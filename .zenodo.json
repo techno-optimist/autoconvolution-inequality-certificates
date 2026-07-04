@@ -1,0 +1,18 @@
+{
+  "title": "Exact-arithmetic certificates for three autoconvolution inequalities, with machine-verified re-evaluations of four published constructions",
+  "description": "Machine-verified, exact-rational bounds for the three autoconvolution inequality constants popularized by the recent AI-search literature: C1 <= 1.5028503020710078765191888, C2 >= 0.9629011010961756912885013, and C3 <= 1.452304333183157960701885, each an explicit rational evaluated in exact integer arithmetic (Kronecker-substitution convolution up to n = 524288) with no floating-point operation on any certified path. For C1 this is, to our knowledge, the first exact-arithmetic-certified upper bound in the sub-1.51 regime; for C3, the first rigorously certified nontrivial bound for the signed variant. Four published construction vectors are additionally re-certified exactly. The repository includes the full verification package (scripts, input vectors, certificates).",
+  "upload_type": "publication",
+  "publication_type": "preprint",
+  "creators": [
+    { "name": "Russell, Kevin", "affiliation": "ProjectForty2" }
+  ],
+  "license": "cc-by-4.0",
+  "access_right": "open",
+  "keywords": [
+    "autoconvolution inequalities",
+    "computer-assisted proof",
+    "exact rational arithmetic",
+    "Kronecker substitution",
+    "certification of numerical records"
+  ]
+}

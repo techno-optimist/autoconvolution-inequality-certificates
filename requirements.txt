@@ -1,0 +1,9 @@
+# Every CERTIFIED path (scripts/exact_board2.py, exact_board3.py, the exact
+# sections of exact_board4.py, certify.py, cert_published_c3.py) needs NOTHING
+# beyond the Python >= 3.9 standard library.
+#
+# The packages below are only for exact_board4.py's optional float cross-check
+# section and for regenerating the figure.
+
+numpy>=1.24        # float cross-checks in exact_board4.py; figure data handling
+matplotlib>=3.7    # make_figure.py only

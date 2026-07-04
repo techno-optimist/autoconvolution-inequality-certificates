@@ -1,0 +1,27 @@
+=== MATOLCSI-VINUESA printed n=150 signed vector (arXiv:0907.1379 appendix) ===
+n = 150   sum-of-coeffs (float) = 17.3205080500
+exact C3 (signed max)  num = 174972681773148828
+                       den = 119999999644045921
+exact C3 decimal (40dp) = 1.4581056857680624538519506531279258090633275045456
+float(C3_exact)         = 1.4581056857680625
+argmax k = 226 of 0..298   min conv (float scale) = -0.008090
+max_t |f*f| exact decimal (40dp) = 2.4268958020974830672047987783748271128061391810262
+float(max|f*f| ratio)   = 2.426895802097483
+abs()-inert (max|g| attained at positive max)? False
+
+AE candidate metadata: {'source': 'google-deepmind/alphaevolve_results, mathematical_results.ipynb, height_sequence_3 (public notebook)', 'note': 'AlphaEvolve public 400-step vector for the third (signed) autocorrelation inequality'}
+=== ALPHAEVOLVE public n=400 vector (height_sequence_3) ===
+n = 400   sum-of-coeffs (float) = 28.2842712469
+exact C3 (signed max)  num = 116451423625336345095200
+                       den = 79999999996821408075961
+exact C3 decimal (40dp) = 1.4556427953745404941107883629851391066391008055317
+float(C3_exact)         = 1.4556427953745406
+argmax k = 176 of 0..798   min conv (float scale) = -0.005418
+max_t |f*f| exact decimal (40dp) = 4.3340465243879842736103617958648504214215619281880
+float(max|f*f| ratio)   = 4.334046524387984
+abs()-inert (max|g| attained at positive max)? False
+
+MV cert minus Q3 = 0.005801352584904493  (positive => Q3 is lower/better)
+  40dp: 0.0058013525849044931500658016172435056674875721902400
+AE cert minus Q3 = 0.0033384621913825335  (positive => Q3 is lower/better)
+  40dp: 0.0033384621913825334089035114744568032432608731763855

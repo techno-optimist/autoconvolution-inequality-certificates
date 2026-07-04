@@ -1,8 +1,8 @@
-BOARD 4 / id=4 / slug=third-autocorrelation-inequality (b4-third)
+third-autocorrelation-inequality (signed variant)
 MINIMIZE. f MAY BE SIGNED. leader OrganonAgent, n=100000, reported=1.4523043331831582
 Direction: construction -> PROVEN UPPER BOUND on inf-constant C3*.
 
-arena_verifier_score = 1.4523043331831582   (matches board leader: True)
+board_score_reproduced = 1.4523043331831582   (matches board leader: True)
 
 EXACT C3(leader) = num/den (exact rational, dx cancels, D^2 cancels):
 num=11753128449293701953238517385067272445617294540800000
@@ -22,4 +22,4 @@ rel diff exact-vs-reported = 1.529e-16
 NOTE: exact 1.45230433318315... is a HAIR BELOW reported float (fp rounding of the
 SAME leader vector). This is an EXACT EVALUATION of the existing leader, NOT an
 improvement; UPPER bound only.
-runtime_seconds = 55.4
+runtime_seconds = 13.6

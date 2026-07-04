@@ -9,7 +9,7 @@ max_t |f*f| exact decimal (40dp) = 2.4268958020974830672047987783748271128061391
 float(max|f*f| ratio)   = 2.426895802097483
 abs()-inert (max|g| attained at positive max)? False
 
-AE candidate metadata: {'source': 'google-deepmind/alphaevolve_results, mathematical_results.ipynb, height_sequence_3 (public notebook)', 'note': 'AlphaEvolve public 400-step vector for the third (signed) autocorrelation inequality'}
+AE candidate metadata: {'note': 'AlphaEvolve public 400-step vector for the third (signed) autocorrelation inequality'}
 === ALPHAEVOLVE public n=400 vector (height_sequence_3) ===
 n = 400   sum-of-coeffs (float) = 28.2842712469
 exact C3 (signed max)  num = 116451423625336345095200

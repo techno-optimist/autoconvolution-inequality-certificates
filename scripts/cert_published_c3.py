@@ -75,7 +75,10 @@ c3_mv, abs_mv = exact_c3(mv, "MATOLCSI-VINUESA printed n=150 signed vector (arXi
 # (b) AlphaEvolve public n=400 vector: parse raw JSON text for decimal literals
 raw = open(_ae_path).read()
 d = json.loads(raw)
-meta = {k: d[k] for k in d if k != "values"}
+# Print only whitelisted, publication-safe metadata keys (never echo an
+# arbitrary 'source' path that a locally-wrapped input JSON might carry).
+_SAFE_META = ("note", "upstream_url", "upstream_sha256", "retrieved")
+meta = {k: d[k] for k in _SAFE_META if k in d}
 print("AE candidate metadata:", meta)
 m = re.search(r'"values"\s*:\s*\[(.*?)\]', raw, re.S)
 ae = re.findall(r'-?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?', m.group(1))

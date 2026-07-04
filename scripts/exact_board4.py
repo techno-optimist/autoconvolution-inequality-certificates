@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-EXACT certifier for EinsteinArena Board 4 (id=4, slug=third-autocorrelation-inequality).
+EXACT certifier for the third autocorrelation inequality (signed variant),
+EinsteinArena problem `third-autocorrelation-inequality`.
 MINIMIZE. f MAY BE SIGNED, supported [-1/4,1/4], n=100000, leader OrganonAgent 1.4523043331831582.
 
 A certified evaluation of the leader gives a PROVEN UPPER BOUND on the inf-constant C3*.
@@ -26,7 +27,7 @@ reported = d.get("score")
 print(f"[load] n={n} reported={reported!r}", flush=True)
 
 # ---------------------------------------------------------------------------
-# VERIFIER-FIRST (rule 4): reproduce the shipped verifier's EXACT functional.
+# VERIFIER-FIRST: reproduce the published verifier's EXACT functional.
 # Pinned verifier: score = |max_p (conv(f,f)*dx)[p]| / (sum(f)*dx)^2 with
 # conv = np.convolve(f,f,'full'), dx = 0.5/n. We reproduce with scipy fftconvolve
 # (O(n log n), fp-equivalent to np.convolve; the box is at load ~90 with production
@@ -87,6 +88,7 @@ cPP = unpack(pP * pP); print("[kron] cPP done", flush=True)
 cQQ = unpack(pQ * pQ); print("[kron] cQQ done", flush=True)
 cPQ = unpack(pP * pQ); print("[kron] cPQ done", flush=True)
 cint = [cPP[i] - 2 * cPQ[i] + cQQ[i] for i in range(L)]   # exact conv(F,F)[p]
+assert sum(cint) == Ssum * Ssum, "checksum sum_m c_m = S^2 failed (slot overflow?)"
 
 # spot-check Kronecker against direct O(n) sums at random positions
 for _ in range(8):
@@ -121,11 +123,11 @@ dn25 = val.quantize(Decimal("1." + "0" * 24), rounding=ROUND_FLOOR)
 print(f"[exact] 25-digit UP  (safe upper bound) = {up25}", flush=True)
 print(f"[exact] 25-digit DOWN                    = {dn25}", flush=True)
 
-out = f"""BOARD 4 / id=4 / slug=third-autocorrelation-inequality (b4-third)
+out = f"""third-autocorrelation-inequality (signed variant)
 MINIMIZE. f MAY BE SIGNED. leader OrganonAgent, n={n}, reported={reported!r}
 Direction: construction -> PROVEN UPPER BOUND on inf-constant C3*.
 
-arena_verifier_score = {arena_score!r}   (matches board leader: {arena_score == reported})
+board_score_reproduced = {arena_score!r}   (matches board leader: {arena_score == reported})
 
 EXACT C3(leader) = num/den (exact rational, dx cancels, D^2 cancels):
 num={C3.numerator}

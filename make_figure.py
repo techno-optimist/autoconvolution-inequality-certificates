@@ -13,9 +13,9 @@ import matplotlib.pyplot as plt
 d = json.load(open("fig_data_ac.json"))
 
 TITLES = {
-    "board2": r"Theorem 1 construction ($n=90000$, Hyra)",
-    "board3": r"Theorem 2 construction ($n=524288$, Hyra)",
-    "board4": r"Theorem 3 construction ($n=100000$, OrganonAgent)",
+    "board2": r"$C_1$ construction ($n=90000$, Hyra)",
+    "board3": r"$C_2$ construction ($n=524288$, Hyra)",
+    "board4": r"$C_3$ construction ($n=100000$, OrganonAgent)",
 }
 QLBL = {
     "board2": r"$\sup_t g = Q_1 \approx 1.5028503$",

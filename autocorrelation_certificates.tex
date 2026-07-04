@@ -6,6 +6,7 @@
 \usepackage{graphicx}
 \usepackage{microtype}
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage{xurl}
 \hypersetup{pdftitle={Exact-arithmetic certificates for three autoconvolution
   inequalities},pdfauthor={Kevin Russell (ProjectForty2 / CHRONOS agent)}}
 
@@ -66,10 +67,13 @@ convolution up to $n = 524288$ cells) with no floating-point operation on any
 certified path. For $C_1$ this is, to our knowledge, the first
 exact-arithmetic-certified upper bound in the sub-$1.51$ regime (the best
 previous fully proven value being the classical $\pi/2$); for $C_3$ it is, to
-our knowledge, the first rigorously certified upper bound for the signed
-variant. We additionally re-certify, exactly, four published construction
-vectors --- Matolcsi--Vinuesa, AlphaEvolve, Boyer--Li, and Jaech--Joseph ---
-upgrading two float-only records to theorem grade and correcting two points of
+our knowledge, the first rigorously certified nontrivial upper bound for the
+signed variant. We additionally re-certify, exactly, four published
+construction vectors --- Matolcsi--Vinuesa, AlphaEvolve, Boyer--Li, and
+Jaech--Joseph --- upgrading three float reports to theorem grade
+(Jaech--Joseph for $C_2$, Matolcsi--Vinuesa and AlphaEvolve for $C_3$),
+independently confirming the Boyer--Li exact fraction, correcting a misstated
+$\infty$-norm claim of Matolcsi--Vinuesa, and repairing two points of
 citation hygiene in this literature. These certificates evaluate existing
 arena leader vectors: they tie, and do not beat, the corresponding
 floating-point leaderboard scores; the contribution is that float records
@@ -88,7 +92,7 @@ records.
 
 Let $f * f$ denote the autoconvolution
 $(f*f)(t) = \int_\RR f(t-x) f(x)\,dx$. Three extremal constants for
-autoconvolutions of step-function-approximable $f$ have become standard
+autoconvolutions have become standard
 benchmarks in the recent literature on AI-driven mathematical search
 \cite{AlphaEvolve25,MathScale25,ThetaEvolve25,TTT26,SimpleTES26}, following a
 much older analytic tradition
@@ -149,10 +153,11 @@ reports an interval-certified improvement $C_1 \ge 1.2937$ \cite{KP26}.
 For $C_2$, only the trivial H\"older bound $C_2 \le 1$ is known on the upper
 side; on the lower (construction) side the strongest fully rigorous published
 value is the exact rational of Boyer--Li \cite{BoyerLi25},
-$0.90156485\ldots$, and the strongest published claim is the float-evaluated
-$0.94136$ of Jaech--Joseph \cite{JJ25}, with larger float-only values
-(up to $0.9627$) reported by AI-search systems
-\cite{MathScale25,SimpleTES26}. For $C_3$, we are not aware of \emph{any}
+$0.90156485\ldots$, and the strongest published claim accompanied by a
+released construction vector (hence independently certifiable) is the
+float-evaluated $0.94136$ of Jaech--Joseph \cite{JJ25}; larger float-only
+values (up to $0.9627$) have been reported by AI-search systems
+\cite{MathScale25,SimpleTES26} without, to our knowledge, released vectors. For $C_3$, we are not aware of \emph{any}
 previously certified nontrivial bound in either direction: the classical
 example of \cite{MV10} ($1.45810\ldots$) and all subsequent reports
 \cite{AlphaEvolve25,MathScale25,SimpleTES26} are floating point, and the only
@@ -213,8 +218,9 @@ Matolcsi--Vinuesa, AlphaEvolve, Boyer--Li, and Jaech--Joseph published
 vectors, and the literature corrections. We stress that the certificates
 evaluate the \emph{existing} leader vectors of the arena boards: they tie,
 and do not beat, the leaderboard floating-point scores (agreement is to
-roughly one unit in the last place in each case); what changes is that three
-float records become theorems. This note itself was drafted and verified
+within a few units in the last place --- one for $C_1$ and $C_3$, four for
+$C_2$ from rounding in the board verifier's FFT path, which we re-run
+bit-for-bit); what changes is that three float records become theorems. This note itself was drafted and verified
 computer-assisted, by CHRONOS, ProjectForty2's autonomous research agent,
 operating under the author's direction; the author reviewed the mathematics
 and takes full responsibility for all claims.
@@ -281,16 +287,17 @@ supports barely touch and $g = 0$.
 (iii) A continuous piecewise-linear function on the compact interval
 $[-\tfrac12,\tfrac12]$ attains its maximum at a knot or an endpoint;
 endpoints give $0$, and $g \equiv 0$ outside. By Fubini,
-$\int g = (\int f)^2 = h^2 (\sum_i a_i)^2 > 0$, so some $c_m$ is strictly
+$\int g = (\int f)^2 = h^2 (\sum_i a_i)^2 > 0$; since
+$\sum_m c_m = \sum_{i,j} a_i a_j = (\sum_i a_i)^2$, some $c_m$ is strictly
 positive and the maximum over knots is positive, hence dominates the
 endpoint value $0$; the same knot-or-endpoint argument applied to $\pm g$
 gives the $\supnorm{g}$ formula.
 
-(iv) When $a_i \ge 0$, also $g \ge 0$, and the integral of a nonnegative
-piecewise-linear function is the exact trapezoid sum: with zero endpoint
-values, $\onenorm{g} = \int g = h \sum_m g(\tau_m) = h^2 \sum_m c_m$, which
-equals $(\int f)^2$ by Fubini (an internal consistency check that the
-implementation verifies exactly). For $\twonorm{g}^2$, on each knot gap of
+(iv) The trapezoid rule is exact for the piecewise-linear $g$: with zero
+endpoint values, $\int g = h \sum_m g(\tau_m) = h^2 \sum_m c_m$, which equals
+$(\int f)^2$ by Fubini (an internal consistency check that the implementation
+verifies exactly). When $a_i \ge 0$, also $g \ge 0$, so
+$\onenorm{g} = \int g = h^2 \sum_m c_m$. For $\twonorm{g}^2$, on each knot gap of
 width $h$ with endpoint values $y_1, y_2$ the function is linear, and
 $\int (\text{linear})^2 = \tfrac{h}{3}(y_1^2 + y_1 y_2 + y_2^2)$ exactly;
 summing over the $2n$ gaps (zero-padded ends) gives the stated formula.
@@ -434,7 +441,7 @@ reports $1.5068$ \cite{ThetaEvolve25}, $1.5053$ and $1.5032$
 $Q_1$. Theorem~\ref{thm:c1} says nothing about the lower side: the
 peer-reviewed $C_1 \ge 1.28$ \cite{CS17} and the interval-certified
 $C_1 \ge 1.2937$ of the preprint \cite{KP26} stand as published, and the gap
-$[1.2937,\, 1.50286]$ remains wide open.
+$[1.2937,\, Q_1]$ remains wide open.
 \end{remark}
 
 \begin{remark}[citation hygiene: $1.50992$]\label{rem:hygiene}
@@ -511,7 +518,7 @@ construction vectors.
 \texttt{function.py} published in the repository accompanying Jaech--Joseph
 \cite{JJ25}. Its exact continuum ratio lies in
 \[
-[\,0.941362894973764322596059,\; 0.941362894973764322596060\,]
+[\,0.9413628949737643225960591,\; 0.9413628949737643225960592\,]
 \]
 (directed $25$-digit enclosure; the exact value begins
 $0.9413628949737643225960591212\ldots$); in particular the Jaech--Joseph claim
@@ -581,7 +588,7 @@ the signed integer numerators $A_i$ have at most $77$ bits and
 $S := \sum_i A_i$ has $87$ bits, $S \neq 0$. Splitting $A = P - Q$ with
 $P, Q \ge 0$, the three nonnegative autoconvolutions $c_{PP}, c_{PQ},
 c_{QQ}$ were computed by Kronecker substitution with $22$-byte slots and
-combined as $c = c_{PP} - 2 c_{PQ} + c_{QQ}$; six random positions were
+combined as $c = c_{PP} - 2 c_{PQ} + c_{QQ}$; eight random positions were
 re-verified against direct $O(n)$ integer sums, and the checksum
 $\sum_m c_m = S^2$ holds exactly. The maximum $M = \max_m c_m$ is positive
 (so the absolute value in the board functional is inert --- as it must be,
@@ -605,7 +612,10 @@ literal rerun of the board's $O(n^2)$ path is pending
 
 To our knowledge --- subject to the arXiv sweep listed in
 Section~\ref{sec:pending} --- Theorem~\ref{thm:c3} is the first rigorously
-certified nontrivial upper bound for the signed variant. The two classical
+certified nontrivial upper bound for the signed variant. (The qualifier
+\emph{nontrivial} excludes the inherited bound $C_3 \le C_1 \le \pi/2$, valid
+because every nonnegative admissible $f$ is also signed-admissible and the
+two constants are infima of the same functional.) The two classical
 reference points for this constant are float reports; we certify both.
 
 \begin{proposition}[re-certification of two published $C_3$ vectors]
@@ -657,7 +667,7 @@ Proposition~\ref{prop:c3recert}(a) shows its $\infty$-norm ratio is
 $2.42689\ldots$, and $1.45810\ldots$ is the \emph{signed maximum}
 $\max_t (f*f)(t)$. The example is thus an example for the signed-maximum
 constant $C_3$ --- which is how \cite[Problem 6.4(b)]{MathScale25} files it
---- and certifies (now exactly) $C_3 \le 1.4581056857680625\ldots$; it says
+--- and certifies (now exactly) $C_3 \le 1.45810568576806245\ldots$; it says
 nothing about the $\infty$-norm variant. The same caution applies to the
 AlphaEvolve vector ($\infty$-norm ratio $4.334\ldots$) and to the
 Theorem~\ref{thm:c3} leader itself (see Figure~\ref{fig:constructions}).
@@ -719,7 +729,7 @@ $C_3$ & $Q_3 = 1.45230433318315796\ldots$ & upper & $\ge 1$ (trivial;
 nothing better) & OrganonAgent \\
 \bottomrule
 \end{tabular}
-\caption{The three certified bounds (Theorems~\ref{thm:c1}--\ref{thm:c3}).
+\caption{The three certified bounds (Theorems~\ref{thm:c1}, \ref{thm:c2} and~\ref{thm:c3}).
 Each exact value is a ratio of explicit integers printed in the theorem
 statements; the decimals shown here are truncations of the certified
 enclosures.}
@@ -768,7 +778,7 @@ the works cited.
 
 For full transparency, items \emph{not} machine-verified at the time of
 writing, none of which affects the exact evaluations of
-Theorems~\ref{thm:c1}--\ref{thm:c3}:
+Theorems~\ref{thm:c1}, \ref{thm:c2} and~\ref{thm:c3}:
 \begin{enumerate}
 \item \textbf{Literal verifier reruns.} The floating-point cross-checks of
 the Theorem~\ref{thm:c1} and Theorem~\ref{thm:c3} vectors used
@@ -811,13 +821,14 @@ ProjectForty2's autonomous research agent.
 \section{Reproducibility}\label{sec:repro}
 \sloppy
 
-All scripts and verifier outputs accompany this note as ancillary files, in
-the directories \texttt{scripts/} and \texttt{certs/}. Large input vectors
-are regenerable from the cited public sources; hashes are to be frozen per
-Section~\ref{sec:pending}, item 4.
+All scripts, input vectors, and verifier outputs accompany this note as
+ancillary files, in the directories \texttt{scripts/}, \texttt{vectors/}, and
+\texttt{certs/}; every reproduction command in the accompanying
+\texttt{README} was re-verified end-to-end from this bundle. Cryptographic
+hashes are to be frozen per Section~\ref{sec:pending}, item 4.
 
 \paragraph{Headline bounds (exact; certify
-Theorems~\ref{thm:c1}--\ref{thm:c3}).}
+Theorems~\ref{thm:c1}, \ref{thm:c2} and~\ref{thm:c3}).}
 \begin{itemize}
 \item \texttt{scripts/exact\_board2.py} --- Theorem~\ref{thm:c1}. Input: the
 $n = 90000$ Hyra vector as retrieved. Output must reproduce
@@ -848,11 +859,15 @@ the Matolcsi--Vinuesa $n=150$ printed vector (decimal-parsed from the arXiv
 source of \cite{MV10}; \texttt{mv150\_printed.txt}) and the AlphaEvolve
 $n=400$ public vector, including the $\infty$-norm ratios of
 Remark~\ref{rem:mvnorm}. Output: \texttt{certs/cert\_published\_c3\_out.txt}.
-\item \texttt{certs/recert\_enclosures.txt} --- directed $25$-digit
-enclosures for all re-certified values and margins, as quoted in the text.
+\item \texttt{scripts/recert\_enclosures.py} --- the ``enclosure script''
+cited in the proofs of Propositions~\ref{prop:c2recert}
+and~\ref{prop:c3recert}: it computes the directed decimal enclosures of all
+re-certified values and margins by exact \texttt{Fraction} floor/ceil.
+Output: \texttt{certs/recert\_enclosures.txt}, whose decimals byte-match the
+values quoted in the text.
 \end{itemize}
 
-\paragraph{Figure.} \texttt{scripts/make\_figure.py} regenerates
+\paragraph{Figure.} \texttt{make\_figure.py} regenerates
 Figure~\ref{fig:constructions} from the envelope-downsampled display data
 (\texttt{fig\_data\_ac.json}); the figure is display-only and carries no
 certified content.
@@ -866,6 +881,7 @@ $553$\,s). All certified arithmetic is CPython arbitrary-precision
 path.
 
 \begin{thebibliography}{14}
+\sloppy
 
 \bibitem{AEresults25}
 Google DeepMind,
